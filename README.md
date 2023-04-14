@@ -1,2 +1,1 @@
-# eda-tool
-The web application tool for Escaped Defect Analysis
+This is a starter template for [Learn Next.js](https://nextjs.org/learn).
