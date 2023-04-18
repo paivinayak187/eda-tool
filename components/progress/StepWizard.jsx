@@ -12,9 +12,9 @@ export default function StepWizard({ steps, currentStep, onIncrementStep, onDecr
             <br />
             <Card.Body>
                 <Card.Title>{steps[currentStep - 1].title}</Card.Title>
-                <Card.Text>
+                <div>
                     {steps[currentStep - 1].component}
-                </Card.Text>
+                </div>
             </Card.Body>
             <Card.Footer>
                 <Button variant="secondary" disabled={currentStep === 1} onClick={onDecrementStep}>Previous</Button>
