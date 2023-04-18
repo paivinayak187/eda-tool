@@ -11,7 +11,6 @@ export default function Ticket() {
 
     return (
         <InputGroup className="mb-3">
-            <InputGroup.Text>OAM</InputGroup.Text>
             <Form.Control aria-label="Ticket number" onChange={(e) => dispatch(updateTicketNumber(e.target.value))} value={ticketNumber} />
             <Form.Control aria-label="Ticket title" onChange={(e) => dispatch(updateTicketTitle(e.target.value))} value={ticketTitle} />
         </InputGroup>

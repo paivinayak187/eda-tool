@@ -17,14 +17,10 @@ const whySlice = createSlice({
             state.whyThisCustomer = action.payload
         },
         updateWhys: (state, action) => {
-            console.log(`VPAI updateWhys: action = ${JSON.stringify(action)}`);
-            console.log(`VPAI updateWhys: state.whys = ${JSON.stringify(state.whys)}`);
             const why = state.whys[action.payload.index];
             why.text = action.payload.value;
         },
         addNewWhy: (state, action) => {
-            console.log(`VPAI addNewWhy: action = ${JSON.stringify(action)}`);
-            console.log(`VPAI addNewWhy: state.whys = ${JSON.stringify(state.whys)}`);
             state.whys.push({ text: "" });
         },
     }
