@@ -20,11 +20,14 @@ const whySlice = createSlice({
             const why = state.whys[action.payload.index];
             why.text = action.payload.value;
         },
-        addNewWhy: (state, action) => {
+        addNewWhy: (state) => {
             state.whys.push({ text: "" });
         },
+        deleteWhy: (state, action) => {
+            state.whys.splice(action.payload.index, 1);
+        }
     }
 });
 
-export const { updateTrigger, updateWhyThisCustomer, updateWhys, addNewWhy } = whySlice.actions;
+export const { updateTrigger, updateWhyThisCustomer, updateWhys, addNewWhy, deleteWhy } = whySlice.actions;
 export default whySlice.reducer;

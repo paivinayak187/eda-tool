@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     number: "",
-    title: ""
+    title: "",
+    description: ""
 };
 
 const ticketSlice = createSlice({
@@ -14,9 +15,12 @@ const ticketSlice = createSlice({
         },
         updateTicketTitle: (state, action) => {
             state.title = action.payload
+        },
+        updateTicketDescription: (state, action) => {
+            state.description = action.payload
         }
     }
 });
 
-export const { updateTicketNumber, updateTicketTitle } = ticketSlice.actions;
+export const { updateTicketNumber, updateTicketTitle, updateTicketDescription } = ticketSlice.actions;
 export default ticketSlice.reducer;
