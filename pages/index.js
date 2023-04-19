@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import EDAWizard from '../components/EDAWizard';
+import EDAWizard from '../components/wizards/EDAWizard';
 
 export default function EDAHome() {
   return (
