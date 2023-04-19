@@ -1,13 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ticketReducer from "../components/features/tickets/ticketSlice";
 import whyReducer from "../components/features/whys/whySlice";
-import takeAways from "../components/features/take-aways/takeAwaySlice";
+import takeAwaysReducer from "../components/features/take-aways/takeAwaySlice";
+import genericReducer from "../components/wizards/genericSlice";
 
 const store = configureStore({
     reducer: {
+        generic: genericReducer,
         ticket: ticketReducer,
         whys: whyReducer,
-        takeAways: takeAways
+        takeAways: takeAwaysReducer
     }
 });
 

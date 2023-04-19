@@ -1,0 +1,55 @@
+// LIBRARIES //
+import ReactDatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css";
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+// INTERNAL COMPONENTS //
+import StepWizard from '../progress/StepWizard';
+import Ticket from '../features/tickets/Ticket';
+import Whys from '../features/whys/Whys';
+import TakeAways from '../features/take-aways/TakeAways';
+
+// ACTIONS //
+import { setEDADate } from "./genericSlice";
+
+// CSS //
+import styles from "./EDAWizard.module.scss";
+
+export default function EDAWizard() {
+    const dispatch = useDispatch();
+    const edaDate = useSelector((state) => state.generic.edaDate);
+    const [currentStep, setCurrentStep] = useState(1);
+
+    const steps = [{
+        title: "What was this issue about?",
+        component: <Ticket />
+    }, {
+        title: "What was the root cause?",
+        component: <Whys />
+    }, {
+        title: "What are the main take aways?",
+        component: <TakeAways />
+    }];
+
+    return (
+        <Container>
+            <Row>
+                <Col md="auto">Date</Col>
+                <Col md="auto">
+                    <ReactDatePicker selected={edaDate} onChange={(date) => dispatch(setEDADate(date))} />
+                </Col>
+                <Col md={{ offset: 7 }}>
+                    <Button>Generate EDA report</Button>
+                </Col>
+            </Row>
+            <Row className={styles.stepWizard}>
+                <StepWizard steps={steps}
+                    currentStep={currentStep}
+                    onIncrementStep={() => setCurrentStep(currentStep + 1)}
+                    onDecrementStep={() => setCurrentStep(currentStep - 1)} />
+            </Row>
+        </Container >
+    )
+}
