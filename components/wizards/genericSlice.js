@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    edaDate: new Date()
+    edaDate: new Date().toString()
 }
 
 const genericSlice = createSlice({
@@ -9,7 +9,7 @@ const genericSlice = createSlice({
     initialState: initialState,
     reducers: {
         setEDADate: (state, action) => {
-            state.edaDate = action.payload
+            state.edaDate = action.payload.toString()
         }
     }
 });
