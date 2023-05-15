@@ -4,14 +4,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ReactDOM from 'react-dom';
-import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 
 // INTERNAL COMPONENTS //
 import StepWizard from '../progress/StepWizard';
 import Ticket from '../features/tickets/Ticket';
 import Whys from '../features/whys/Whys';
 import TakeAways from '../features/take-aways/TakeAways';
+
+// UTILS //
+import { PDFDocument } from './pdfUtils';
 
 // ACTIONS //
 import { setEDADate } from "./genericSlice";
@@ -21,21 +23,6 @@ import store from "../../store/store";
 
 // CSS //
 import styles from "./EDAWizard.module.scss";
-
-// Create styles for PDF
-const pdfStyles = StyleSheet.create({
-    page: {
-        flexDirection: 'row',
-        backgroundColor: '#E4E4E4',
-        pageMode: 'fullScreen'
-    },
-    section: {
-        margin: 10,
-        padding: 100,
-        flexGrow: 1
-    }
-});
-
 
 export default function EDAWizard() {
     const dispatch = useDispatch();
@@ -53,29 +40,15 @@ export default function EDAWizard() {
         component: <TakeAways />
     }];
 
-    function generateEDAReport() {
+    const generateEDAReport = async () => {
         const state = store.getState();
-        // Create Document Component
-        const MyDocument = () => (
-            <Document>
-                <Page size="A4" style={pdfStyles.page}>
-                    <View style={pdfStyles.section}>
-                        <Text>Section #1</Text>
-                    </View>
-                    <View style={pdfStyles.section}>
-                        <Text>Section #2</Text>
-                    </View>
-                </Page>
-            </Document>
-        );
-
-        const App = () => (
-            <PDFViewer>
-                <MyDocument />
-            </PDFViewer>
-        );
-
-        ReactDOM.render(<App />, document.getElementById('__next'));
+        console.log("state = ", state);
+        const pdfBlob = await pdf(<PDFDocument state={store.getState()} />).toBlob();
+        const url = URL.createObjectURL(pdfBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'document.pdf';
+        link.click();
     }
 
     return (
@@ -86,7 +59,7 @@ export default function EDAWizard() {
                     <ReactDatePicker selected={edaDate} onChange={(date) => dispatch(setEDADate(date))} />
                 </Col>
                 <Col md={{ offset: 7 }}>
-                    <Button onClick={() => generateEDAReport()}>Generate EDA report</Button>
+                    <Button onClick={generateEDAReport}>Generate EDA report</Button>
                 </Col>
             </Row>
             <Row className={styles.stepWizard}>
