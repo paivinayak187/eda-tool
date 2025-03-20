@@ -47,7 +47,7 @@ export default function EDAWizard() {
         const url = URL.createObjectURL(pdfBlob);
         const link = document.createElement('a');
         link.href = url;
-        link.download = 'document.pdf';
+        link.download = `${state.ticket.number}_EDA.pdf`;
         link.click();
     }
 
@@ -59,7 +59,7 @@ export default function EDAWizard() {
                     <ReactDatePicker selected={edaDate} onChange={(date) => dispatch(setEDADate(date))} />
                 </Col>
                 <Col md={{ offset: 7 }}>
-                    <Button onClick={generateEDAReport}>Generate EDA report</Button>
+                    <Button onClick={generateEDAReport}>Download Report</Button>
                 </Col>
             </Row>
             <Row className={styles.stepWizard}>

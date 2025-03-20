@@ -1,5 +1,6 @@
 # Escaped Defect Analysis Tool
-The web application tool for Escaped Defect Analysis (EDA) built using [Next.js](https://nextjs.org/) and [Redux ToolKit](https://redux-toolkit.js.org/)
+The web application tool for Escaped Defect Analysis (EDA) built using [Next.js](https://nextjs.org/) and [Redux ToolKit](https://redux-toolkit.js.org/).
+This is client only tool. The data is not uploaded to any server.
 
 ## Demo
 This web application is deployed on Vercel.
@@ -11,5 +12,5 @@ This project uses [npm](https://npm.io/) to install dependencies and run scripts
 - Run `npm run dev` to start the local development server
 - Open `http://localhost:3000` in your web browser
 
-## Reference
+## License
 - [MIT License](./LICENSE)
