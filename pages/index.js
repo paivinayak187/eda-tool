@@ -5,9 +5,10 @@ export default function EDAHome() {
   return (
     <>
       <Head>
-        <title>Welcome to EDA</title>
+        <title>EDA</title>
       </Head>
-      <h1>EDA</h1>
+      <h1>Escaped Defect Analysis</h1>
+      <hr/>
       <EDAWizard />
     </>
   )
