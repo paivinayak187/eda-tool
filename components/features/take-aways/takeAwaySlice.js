@@ -4,6 +4,7 @@ import {
 
 const initialState = {
     fix: "",
+    introductionSource: "",
     phase: "",
     futureBugs: "",
     allBugsAddressed: ""
@@ -15,6 +16,9 @@ const takeAwaySlice = createSlice({
     reducers: {
         updateFix: (state, action) => {
             state.fix = action.payload
+        },
+        updateIntroductionSource: (state, action) => {
+            state.introductionSource = action.payload
         },
         updatePhase: (state, action) => {
             state.phase = action.payload
@@ -28,5 +32,5 @@ const takeAwaySlice = createSlice({
     }
 });
 
-export const { updateFix, updatePhase, updateFutureBugs, updateAllBugsAddressed } = takeAwaySlice.actions;
+export const { updateFix, updatePhase, updateFutureBugs, updateAllBugsAddressed, updateIntroductionSource } = takeAwaySlice.actions;
 export default takeAwaySlice.reducer;
