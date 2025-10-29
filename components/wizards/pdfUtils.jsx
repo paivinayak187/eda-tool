@@ -73,6 +73,12 @@ export const PDFDocument = ({ state }) => (
                     {state.takeAways.fix}
                 </Text>
                 <Text style={styles.textLarge}>
+                    Source of Introduction?
+                </Text>
+                <Text style={styles.textSmall}>
+                    {state.takeAways.introductionSource}
+                </Text>
+                <Text style={styles.textLarge}>
                     In what phase we should have caught it?
                 </Text>
                 <Text style={styles.textSmall}>

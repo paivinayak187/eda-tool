@@ -3,11 +3,12 @@ import { Card, Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
 
 // ACTIONS //
-import { updateFix, updatePhase, updateFutureBugs, updateAllBugsAddressed } from '../take-aways/takeAwaySlice';
+import { updateFix, updatePhase, updateFutureBugs, updateAllBugsAddressed, updateIntroductionSource } from '../take-aways/takeAwaySlice';
 
 export default function TakeAways() {
     const dispatch = useDispatch();
     const fix = useSelector((state) => state.takeAways.fix);
+    const introductionSource = useSelector((state) => state.takeAways.introductionSource);
     const phase = useSelector((state) => state.takeAways.phase);
     const futureBugs = useSelector((state) => state.takeAways.futureBugs);
     const allBugsAddressed = useSelector((state) => state.takeAways.allBugsAddressed);
@@ -24,7 +25,15 @@ export default function TakeAways() {
             </Card.Body>
             <Card.Body>
                 <Row>
-                    <Col style={{ maxWidth: "300px" }}>In what phase we should have caught it?</Col>
+                    <Col style={{ maxWidth: "300px" }}>Source of Introduction?</Col>
+                    <Col>
+                        <Form.Control as="textarea" rows="1" onChange={(e) => dispatch(updateIntroductionSource(e.target.value))} value={introductionSource} />
+                    </Col>
+                </Row>
+            </Card.Body>
+            <Card.Body>
+                <Row>
+                    <Col style={{ maxWidth: "300px" }}>Source of Detection (In which phase we should have caught it)?</Col>
                     <Col>
                         <Form.Control as="textarea" rows="3" onChange={(e) => dispatch(updatePhase(e.target.value))} value={phase} />
                     </Col>
